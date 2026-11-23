@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>CAIL Weekly Updates</title>
+<!--
+  ============================================================================
+  CAIL WEEKLY UPDATES — NEWSLETTER TEMPLATE
+  ============================================================================
+  HOW TO USE
+  1. Search for "{{" and replace every token with this week's content.
+  2. Duplicate or delete <tr> blocks marked "REPEATABLE" to match your item count.
+  3. Keep links absolute (https://...). Relative links break in most clients.
+  4. Send a plain-text fallback too — see newsletter.txt in this folder.
+  5. Test in Gmail, Apple Mail, and Outlook before sending.
+
+  TOKENS
+    {{issue_number}}   e.g. 014
+    {{date}}           e.g. Monday, March 3, 2025
+    {{preheader}}      ~90 chars, shows in the inbox preview line
+    {{intro}}          one short paragraph
+    {{update_tag}}     New | Improved | Fixed | Breaking | Docs
+    {{update_title}}   short headline
+    {{update_body}}    1–2 sentences
+    {{update_link}}    URL
+    {{tool_name}} / {{tool_tagline}} / {{tool_body}} / {{tool_code}} /
+    {{tool_link}} / {{tool_author}}
+    {{shoutout_name}} / {{shoutout_body}} / {{shoutout_link}}
+    {{event_1_date}} / {{event_1_title}} / {{event_1_body}} / {{event_1_link}}
+    {{lab_url}}         link to the CUNY AI Lab website
+    {{logo_url}}        https://ailab.gc.cuny.edu/images/logo-horizontal.png
+    {{footer_address}} / {{unsubscribe_url}} / {{archive_url}} / {{contact_email}}
+
+  STYLE NOTES
+    - All styling is inline (required by Gmail/Outlook).
+    - The <style> block only holds mobile tweaks + a dark-mode guard.
+    - Layout is table-based for Outlook; do not convert to flex/grid.
+  ============================================================================
+-->
+<style>
+  /* Progressive enhancement only — inline styles carry the design. */
+  body { margin:0 !important; padding:0 !important; width:100% !important; }
+  table { border-collapse:collapse !important; }
+  img { border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; }
+  a { text-decoration:none; }
+  @media only screen and (max-width:620px) {
+    .container { width:100% !important; }
+    .px { padding-left:22px !important; padding-right:22px !important; }
+    .h1 { font-size:24px !important; line-height:31px !important; }
+    .h2 { font-size:18px !important; }
+    .hide-sm { display:none !important; }
+    .code { font-size:13px !important; }
+  }
+  @media (prefers-color-scheme: dark) {
+    /* Keeps the card readable if a client force-inverts; safe to leave in. */
+    .dm-bg { background:#111827 !important; }
+    .dm-card { background:#1f2937 !important; }
+    .dm-text { color:#e5e7eb !important; }
+    .dm-muted { color:#9ca3af !important; }
+  }
+</style>
+</head>
+<body class="dm-bg" style="margin:0; padding:0; background-color:#eef1f7; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;">
+
+<!-- ============ PREHEADER (inbox preview text) ============ -->
+<div style="display:none; font-size:1px; color:#eef1f7; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;">
+  {{preheader}}
+  &#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="dm-bg" style="background-color:#eef1f7;">
+  <tr>
+    <td align="center" style="padding:26px 12px;">
+
+      <!-- ==================== CARD ==================== -->
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="container dm-card" style="width:600px; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(16,24,40,0.08);">
+
+        <!-- ---------- LOGO ---------- -->
+        <tr>
+          <td class="px" align="left" bgcolor="#ffffff" style="background-color:#ffffff; padding:24px 34px 20px 34px;">
+            <a href="{{lab_url}}" style="text-decoration:none; border:0;">
+              <img src="{{logo_url}}" width="176" height="40" alt="CUNY AI Lab"
+                   style="display:block; width:176px; max-width:176px; height:auto; border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic;">
+            </a>
+          </td>
+        </tr>
+
+        <!-- ---------- HEADER ---------- -->
+        <tr>
+          <td bgcolor="#0b3d91" style="background-color:#0b3d91; background-image:linear-gradient(135deg,#0b3d91 0%,#124f9e 100%); padding:26px 34px 24px 34px;" class="px">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="left" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:12px; letter-spacing:1.2px; text-transform:uppercase; color:#bcd2ee; padding-bottom:8px;">
+                  <font color="#bcd2ee">CUNY AI Sandbox &nbsp;·&nbsp; Issue {{issue_number}}</font>
+                </td>
+              </tr>
+              <tr>
+                <td align="left" class="h1" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:28px; line-height:35px; font-weight:700; color:#ffffff; letter-spacing:-0.2px;">
+                  <font color="#ffffff">CAIL Weekly Updates</font>
+                </td>
+              </tr>
+              <tr>
+                <td align="left" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:14px; line-height:21px; color:#dbe6f5; padding-top:6px;">
+                  <font color="#dbe6f5">{{date}}</font>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ---------- INTRO ---------- -->
+        <tr>
+          <td class="px" style="padding:28px 34px 4px 34px;">
+            <p class="dm-text" style="margin:0; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:27px; color:#344054;">
+              {{intro}}
+            </p>
+          </td>
+        </tr>
+
+        <!-- ---------- IN THIS ISSUE ---------- -->
+        <tr>
+          <td class="px" style="padding:20px 34px 0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f9fc; border-left:3px solid #0b3d91; border-radius:4px;">
+              <tr>
+                <td style="padding:14px 18px; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:14px; line-height:24px; color:#475467;">
+                  <span style="font-weight:700; color:#0b3d91; letter-spacing:0.4px; text-transform:uppercase; font-size:11px;">In this issue</span><br>
+                  1. Platform updates &nbsp;·&nbsp; 2. Tool spotlight: {{tool_name}}<br>
+                  3. Research and projects &nbsp;·&nbsp; 4. Events and workshops
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ==================== SECTION 1: PLATFORM UPDATES ==================== -->
+        <tr>
+          <td class="px" style="padding:34px 34px 0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td class="h2" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:20px; line-height:28px; font-weight:700; color:#101828; padding-bottom:14px;">
+                  Platform Updates
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ---------- UPDATE ITEM (REPEATABLE) ---------- -->
+        <tr>
+          <td class="px" style="padding:0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eaecf0;">
+              <tr>
+                <td style="padding:16px 0 16px 0;">
+                  <span style="display:inline-block; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#067647; background-color:#ecfdf3; border:1px solid #abefc6; border-radius:20px; padding:4px 10px;">{{update_tag}}</span>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:24px; font-weight:700; color:#101828; padding:10px 0 4px 0;">
+                    {{update_title}}
+                  </div>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    {{update_body}}
+                    <a href="{{update_link}}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">Read more →</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- ---------- /UPDATE ITEM ---------- -->
+
+        <!-- ---------- UPDATE ITEM 2 (REPEATABLE) ---------- -->
+        <tr>
+          <td class="px" style="padding:0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eaecf0;">
+              <tr>
+                <td style="padding:16px 0 16px 0;">
+                  <span style="display:inline-block; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#175cd3; background-color:#eff8ff; border:1px solid #b2ddff; border-radius:20px; padding:4px 10px;">{{update_tag}}</span>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:24px; font-weight:700; color:#101828; padding:10px 0 4px 0;">
+                    {{update_title}}
+                  </div>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    {{update_body}}
+                    <a href="{{update_link}}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">Read more →</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- ---------- /UPDATE ITEM 2 ---------- -->
+
+        <!-- ---------- UPDATE ITEM 3 (REPEATABLE) ---------- -->
+        <tr>
+          <td class="px" style="padding:0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eaecf0;">
+              <tr>
+                <td style="padding:16px 0 16px 0;">
+                  <span style="display:inline-block; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#b54708; background-color:#fffaeb; border:1px solid #fedf89; border-radius:20px; padding:4px 10px;">{{update_tag}}</span>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:24px; font-weight:700; color:#101828; padding:10px 0 4px 0;">
+                    {{update_title}}
+                  </div>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    {{update_body}}
+                    <a href="{{update_link}}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">Read more →</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- ---------- /UPDATE ITEM 3 ---------- -->
+
+
+        <!-- ---------- WHY IT MATTERS (optional — delete if unused) ---------- -->
+        <tr>
+          <td class="px" style="padding:14px 34px 0 34px;">
+            <p class="dm-text" style="margin:0; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+              <strong style="color:#101828;">Why this matters:</strong> {{why}}
+            </p>
+          </td>
+        </tr>
+
+        <!-- ---------- RELEASE VERIFICATION (optional — delete if unused) ---------- -->
+        <tr>
+          <td class="px" style="padding:10px 34px 0 34px;">
+            <p style="margin:0; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; line-height:18px; color:#98a2b3;">
+              Release verification: {{verification}}
+            </p>
+          </td>
+        </tr>
+
+        <!-- ==================== SECTION 2: TOOL SPOTLIGHT ==================== -->
+        <tr>
+          <td class="px" style="padding:34px 34px 0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f8fafc; border:1px solid #e2e8f0; border-radius:12px;">
+              <tr>
+                <td style="padding:24px 24px 8px 24px;">
+                  <div style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#0b3d91; padding-bottom:8px;">
+                    Tool Spotlight
+                  </div>
+                  <div class="dm-text" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:21px; line-height:28px; font-weight:700; color:#101828; letter-spacing:-0.1px;">
+                    {{tool_name}}
+                  </div>
+                  <div style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:22px; color:#475467; font-style:italic; padding-top:5px;">
+                    {{tool_tagline}}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:8px 24px 0 24px;">
+                  <p class="dm-text" style="margin:0; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    {{tool_body}}
+                  </p>
+                </td>
+              </tr>
+              <!-- ---------- CODE SNIPPET (delete this <tr> if not needed) ---------- -->
+              <tr>
+                <td style="padding:16px 24px 0 24px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#111827" style="background-color:#111827; border-radius:8px;">
+                    <tr>
+                      <td class="code" style="padding:14px 16px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Courier New',monospace; font-size:13px; line-height:22px; color:#e5e7eb; white-space:pre; overflow-x:auto;"><font color="#e5e7eb">{{tool_code}}</font></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <!-- ---------- /CODE SNIPPET ---------- -->
+              <tr>
+                <td style="padding:18px 24px 24px 24px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td align="center" bgcolor="#0b3d91" style="background-color:#0b3d91; border-radius:8px;">
+                        <a href="{{tool_link}}" style="display:inline-block; padding:11px 20px; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:14px; font-weight:600; color:#ffffff; text-decoration:none;">
+                          <font color="#ffffff">Access the tool</font>
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:13px; line-height:19px; color:#556070; padding-top:10px;">
+                    Contributed by {{tool_author}}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ==================== SECTION 3: RESEARCH AND PROJECTS ==================== -->
+        <tr>
+          <td class="px" style="padding:32px 34px 0 34px;">
+            <div class="h2" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:20px; line-height:28px; font-weight:700; color:#101828; padding-bottom:6px;">
+              Research and Projects in the Sandbox
+            </div>
+            <p class="dm-text" style="margin:0 0 14px 0; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:14px; line-height:21px; color:#556070;">
+              A selection of work currently running in the sandbox. To nominate a project for a future issue, reply to this email.
+            </p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:3px solid #eaecf0;">
+              <tr>
+                <td style="padding:2px 0 2px 16px;">
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#344054;">
+                    <strong style="color:#101828;">{{shoutout_name}}</strong> — {{shoutout_body}}
+                    <a href="{{shoutout_link}}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">View project →</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ==================== SECTION 4: EVENTS ==================== -->
+        <tr>
+          <td class="px" style="padding:32px 34px 0 34px;">
+            <div class="h2" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:20px; line-height:28px; font-weight:700; color:#101828; padding-bottom:14px;">
+              Events and Workshops
+            </div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <!-- REPEATABLE EVENT ROW -->
+              <tr>
+                <td valign="top" width="86" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:13px; font-weight:700; color:#0b3d91; line-height:22px; padding:10px 0; border-top:1px solid #eaecf0;">
+                  {{event_1_date}}
+                </td>
+                <td valign="top" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:24px; color:#475467; padding:10px 0; border-top:1px solid #eaecf0;">
+                  <strong style="color:#101828;">{{event_1_title}}</strong><br>
+                  {{event_1_body}}
+                  <a href="{{event_1_link}}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">Add to calendar →</a>
+                </td>
+              </tr>
+              <!-- /REPEATABLE EVENT ROW -->
+              <tr>
+                <td valign="top" width="86" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:13px; font-weight:700; color:#0b3d91; line-height:22px; padding:10px 0; border-top:1px solid #eaecf0;">
+                  {{event_2_date}}
+                </td>
+                <td valign="top" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:24px; color:#475467; padding:10px 0; border-top:1px solid #eaecf0;">
+                  <strong style="color:#101828;">{{event_2_title}}</strong><br>
+                  {{event_2_body}}
+                  <a href="{{event_2_link}}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">Add to calendar →</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ==================== CUNY AI LAB LINK ==================== -->
+        <tr>
+          <td class="px" style="padding:32px 34px 30px 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f9fc; border-radius:10px;">
+              <tr>
+                <td align="center" style="padding:20px; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                  <a href="{{lab_url}}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">CUNY AI Lab</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ---------- FOOTER ---------- -->
+        <tr>
+          <td class="px" style="background-color:#f7f9fc; border-top:1px solid #eaecf0; padding:24px 34px 26px 34px;">
+            <div style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:13px; line-height:21px; color:#475467;">
+              <strong style="color:#344054;">CUNY AI Sandbox</strong> · {{footer_address}}<br>
+              Questions? Reply to this email or write to
+              <a href="mailto:{{contact_email}}" style="color:#0b3d91; font-weight:600;">{{contact_email}}</a>.<br><br>
+              You're receiving this because you have access to the sandbox.
+              <a href="{{archive_url}}" style="color:#667085; text-decoration:underline;">Past issues</a> &nbsp;·&nbsp;
+              <a href="{{unsubscribe_url}}" style="color:#667085; text-decoration:underline;">Unsubscribe</a>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+      <!-- ==================== /CARD ==================== -->
+
+      <div style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; line-height:16px; color:#98a2b3; padding:16px 20px 4px 20px;">
+        CUNY AI Sandbox &nbsp;·&nbsp; A service of the CUNY Office of Research
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

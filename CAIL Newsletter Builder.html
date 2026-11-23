@@ -1,0 +1,124 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>selftest</title>
+<style>
+  html,body{margin:0;padding:0}
+  #f{display:block;width:100%;height:100vh;border:0}
+  #out{margin:0;padding:12px 16px;font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;
+       white-space:pre-wrap;background:#0b0f14;color:#d6e2ea}
+</style>
+</head><body>
+<iframe id="f" src="index.html"></iframe>
+<pre id="out">running</pre>
+<script>
+const log=[]; const ok=(n,c,extra)=>log.push((c?'PASS ':'FAIL ')+n+(extra?' :: '+extra:''));
+const f=document.getElementById('f');
+f.addEventListener('load',async ()=>{
+  const w=f.contentWindow, d=f.contentDocument;
+  const $=s=>d.querySelector(s), $$=s=>[...d.querySelectorAll(s)];
+  const fire=(el,t='input')=>el.dispatchEvent(new w.Event(t,{bubbles:true}));
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  try{
+    // 1 initial render
+    ok('form fields rendered', $$('[data-path]').length>=20, $$('[data-path]').length+' path inputs');
+    ok('updates list has 1 item', $$('#updates-list .item').length===1);
+    ok('events list has 1 item', $$('#events-list .item').length===1);
+    ok('research list empty help', /No project entries/.test($('#research-list').textContent));
+    ok('preview srcdoc set', ($('#preview').srcdoc||'').includes('CAIL Weekly Updates'), (($('#preview').srcdoc||'').length)+' chars');
+    ok('date prefilled', $('#f-date').value.length>5, $('#f-date').value);
+
+    // 2 typing updates state + preview
+    const t=$('#updates-list .item textarea[data-field="body"]');
+    t.value='Typed body text.'; fire(t);
+    const ti=$('#updates-list .item input[data-field="title"]');
+    ti.value='Typed title'; fire(ti);
+    await sleep(250);
+    ok('preview reflects typed update', $('#preview').srcdoc.includes('Typed title'));
+
+    // 3 add / dup / move / delete
+    $('[data-add="updates"]').click(); await sleep(60);
+    ok('add update', $$('#updates-list .item').length===2, $$('#updates-list .item').length+' items');
+    $$('#updates-list .item input[data-field="title"]')[1].value='Second'; fire($$('#updates-list .item input[data-field="title"]')[1]);
+    $('[data-act="up"][data-index="1"]').click(); await sleep(60);
+    ok('move up', $$('#updates-list .item input[data-field="title"]')[0].value==='Second',
+      $$('#updates-list .item input[data-field="title"]')[0].value);
+    ok('move-up disabled at top', $$('#updates-list .item')[0].querySelector('[data-act="up"]').disabled===true);
+    $('[data-act="dup"][data-index="0"]').click(); await sleep(60);
+    ok('duplicate', $$('#updates-list .item').length===3);
+    $('[data-act="del"][data-index="2"]').click(); await sleep(60);
+    ok('delete', $$('#updates-list .item').length===2);
+    ok('title survives re-render', $$('#updates-list .item input[data-field="title"]')[0].value==='Second');
+
+    // 4 tag select changes badge colour
+    const sel=$('#updates-list .item select[data-field="tag"]');
+    sel.value='Breaking'; fire(sel,'change'); await sleep(250);
+    ok('Breaking badge colour', $('#preview').srcdoc.includes('#b42318'), 'red badge');
+
+    // 5 tool spotlight appears when name typed
+    const tn=$('#f-tool-name'); tn.value='Widget'; fire(tn); await sleep(250);
+    ok('tool spotlight in toc', $('#preview').srcdoc.includes('Tool spotlight: Widget'));
+    ok('tool chip on', /included/.test($('#chip-tool').textContent), $('#chip-tool').textContent);
+    tn.value=''; fire(tn); await sleep(250);
+    ok('tool chip off when cleared', /dropped/.test($('#chip-tool').textContent));
+
+    // 6 code "none" suppression
+    const tc=$('#f-tool-code'); tc.value='none'; tn.value='Widget'; fire(tn); fire(tc); await sleep(250);
+    ok('code "none" drops block', !$('#preview').srcdoc.includes('ui-monospace,SFMono-Regular,Menlo,Consolas,\'Courier New\',monospace; font-size:13px; line-height:22px'));
+    tc.value='npm i x'; fire(tc); await sleep(250);
+    ok('code renders when set', $('#preview').srcdoc.includes('npm i x'));
+
+    // 7 preheader counter warning
+    const ph=$('#f-preheader'); ph.value='x'.repeat(120); fire(ph);
+    ok('counter warns over 90', $('#c-preheader').classList.contains('warn'), $('#c-preheader').textContent);
+
+    // 8 relative link warning
+    ph.value='short'; fire(ph);
+    const ul=$('#updates-list .item input[data-field="link"]'); ul.value='docs/page'; fire(ul); await sleep(250);
+    ok('relative link flagged', /relative or malformed/.test($('#checks').textContent));
+    ul.value='https://ok.example/x'; fire(ul); await sleep(250);
+    ok('absolute link clears warning', !/relative or malformed/.test($('#checks').textContent));
+
+    // 9 house style checks
+    const w2=$('#f-why'); w2.value='This is huge!'; fire(w2); await sleep(250);
+    ok('exclamation flagged', /exclamation point/.test($('#checks').textContent));
+    w2.value=''; fire(w2); await sleep(250);
+
+    // 10 section chips
+    ok('updates chip shows count', /2 items/.test($('#chip-updates').textContent), $('#chip-updates').textContent);
+    ok('research chip dropped', /dropped/.test($('#chip-research').textContent));
+
+    // 11 sample load
+    $('#btn-sample').click(); await sleep(300);
+    ok('sample loads 5 updates', $$('#updates-list .item').length===5, $$('#updates-list .item').length+' items');
+    ok('sample preview has Systems Mapping', $('#preview').srcdoc.includes('Systems Mapping'));
+    ok('sample toc drops research', !$('#preview').srcdoc.includes('Research and Projects in the Sandbox'));
+    ok('sample toc has 3 entries', /3\. Events and workshops/.test($('#preview').srcdoc));
+
+    // 12 research section appears
+    $('[data-add="research"]').click(); await sleep(60);
+    const rn=$('#research-list input[data-field="name"]'); rn.value='Ada'; fire(rn);
+    const rb=$('#research-list textarea[data-field="body"]'); rb.value='Builds maps.'; fire(rb);
+    await sleep(250);
+    ok('research section renders', $('#preview').srcdoc.includes('Research and Projects in the Sandbox'));
+    ok('research toc renumbers', /3\. Research and projects/.test($('#preview').srcdoc));
+    ok('research chip counts', /1 item/.test($('#chip-research').textContent), $('#chip-research').textContent);
+
+    // 13 localStorage autosave
+    await sleep(700);
+    ok('draft autosaved', !!w.localStorage.getItem('cail-newsletter-draft-v1'));
+
+    // 14 mobile toggle
+    d.querySelector('#view-seg button[data-view="mobile"]').click();
+    ok('mobile width applied', $('#preview').style.maxWidth==='390px', $('#preview').style.maxWidth);
+
+    // 15 new issue bumps number
+    d.querySelector('#view-seg button[data-view="desktop"]').click();
+    $('#btn-new').click(); await sleep(300);
+    ok('new issue increments', $('#f-issue').value==='002', $('#f-issue').value);
+    ok('new issue clears updates', $$('#updates-list .item').length===1);
+    ok('new issue keeps footer defaults', $('#f-address').value.includes('365 Fifth Avenue'));
+
+    // 16 no console errors
+    ok('no page errors', !w.__errs || w.__errs.length===0, w.__errs?w.__errs.join('|'):'');
+  }catch(e){ log.push('FAIL exception :: '+(e&&e.stack||e)); }
+  document.getElementById('out').textContent=log.join('\n');
+});
+</script></body></html>

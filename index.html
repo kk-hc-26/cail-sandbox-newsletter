@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAIL Weekly Updates — Newsletter Builder</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="logo-horizontal.png" alt="CUNY AI Lab">
+    <div>
+      <div class="t">CAIL Weekly Updates</div>
+      <div class="s">Newsletter builder</div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="actions">
+    <span class="save-state" id="save-state"></span>
+    <button class="btn-ghost" id="btn-sample" title="Fill the form with the published sample issue">Load sample issue</button>
+    <button class="btn-ghost" id="btn-new" title="Start a blank issue">New issue</button>
+    <button class="btn-ghost" id="btn-txt" title="Download the plain-text fallback (newsletter.txt)">Download .txt</button>
+    <button class="btn-solid" id="btn-copy" title="Copy the newsletter HTML to the clipboard">Copy HTML</button>
+    <button class="btn-solid" id="btn-download" title="Download the finished newsletter HTML">Download HTML</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="formpane" id="formpane">
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num">1</div>
+        <div>
+          <div class="ttl">Issue</div>
+          <div class="hint">Header, inbox preview line, and the opening paragraph.</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="grid three">
+          <div class="field">
+            <label for="f-issue">Issue number</label>
+            <input type="text" id="f-issue" data-path="meta.issue" placeholder="014">
+          </div>
+          <div class="field">
+            <label for="f-date">Date</label>
+            <input type="text" id="f-date" data-path="meta.date" placeholder="Monday, March 3, 2025">
+          </div>
+          <div class="field">
+            <label>&nbsp;</label>
+            <button class="btn-add" id="btn-today" style="border-style:solid; border-color:#b2c4e0;">Use today's date</button>
+          </div>
+        </div>
+        <div class="grid" style="margin-top:12px;">
+          <div class="field">
+            <label for="f-preheader">Preheader <span class="opt">inbox preview · under 90 characters</span></label>
+            <input type="text" id="f-preheader" data-path="meta.preheader" placeholder="Systems Mapping: fuller maps from second memos, faster hand-mapping.">
+            <div class="counter" id="c-preheader">0 / 90</div>
+          </div>
+          <div class="field">
+            <label for="f-intro">Intro <span class="opt">one paragraph, 2–3 sentences</span></label>
+            <textarea id="f-intro" data-path="meta.intro" rows="3" placeholder="This release is concentrated in Systems Mapping: second memos now return fuller maps."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num">2</div>
+        <div style="flex:1;">
+          <div class="ttl">Platform Updates <span id="chip-updates"></span></div>
+          <div class="hint">What actually shipped. Badge colour follows the tag — New green, Improved blue, Fixed amber, Breaking red, Docs purple.</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div id="updates-list"></div>
+        <div class="add-row" style="margin-bottom:14px;">
+          <button class="btn-add" data-add="updates">+ Add update</button>
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label for="f-why">Why this matters <span class="opt">one line · blank to drop</span></label>
+            <input type="text" id="f-why" data-path="why" placeholder="Systems Mapping now sits beside Stem Splitter on the Tools portal.">
+          </div>
+          <div class="field">
+            <label for="f-verif">Release verification <span class="opt">build/test evidence · blank to drop</span></label>
+            <input type="text" id="f-verif" data-path="verification" placeholder="tests 214 passed · deployed 2025-03-03 14:02 ET">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num">3</div>
+        <div style="flex:1;">
+          <div class="ttl">Tool Spotlight <span id="chip-tool"></span></div>
+          <div class="hint">One tool or use case per issue, with a copy-paste snippet and a single call to action.</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="grid two">
+          <div class="field">
+            <label for="f-tool-name">Tool name</label>
+            <input type="text" id="f-tool-name" data-path="tool.name" placeholder="Systems Mapping">
+          </div>
+          <div class="field">
+            <label for="f-tool-author">Contributed by</label>
+            <input type="text" id="f-tool-author" data-path="tool.author" placeholder="Zach, via Codex">
+          </div>
+        </div>
+        <div class="grid" style="margin-top:12px;">
+          <div class="field">
+            <label for="f-tool-tagline">Tagline <span class="opt">one line</span></label>
+            <input type="text" id="f-tool-tagline" data-path="tool.tagline" placeholder="Concept mapping for policy and systems coursework, now on the Tools portal.">
+          </div>
+          <div class="field">
+            <label for="f-tool-body">Body <span class="opt">2–4 sentences</span></label>
+            <textarea id="f-tool-body" data-path="tool.body" rows="4" placeholder="Systems Mapping is a concept-mapping workspace for policy and systems coursework."></textarea>
+          </div>
+          <div class="field">
+            <label for="f-tool-code">Code snippet <span class="opt">optional · write "none" to drop the block</span></label>
+            <textarea id="f-tool-code" data-path="tool.code" rows="3" placeholder="pip install cail-sandbox"></textarea>
+          </div>
+          <div class="grid two">
+            <div class="field">
+              <label for="f-tool-cta">Button label <span class="opt">default: Access the tool</span></label>
+              <input type="text" id="f-tool-cta" data-path="tool.cta" placeholder="Access the tool">
+            </div>
+            <div class="field">
+              <label for="f-tool-link">Call-to-action link</label>
+              <input type="text" id="f-tool-link" data-path="tool.link" placeholder="https://ailab.gc.cuny.edu/tools/">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num">4</div>
+        <div style="flex:1;">
+          <div class="ttl">Research and Projects <span id="chip-research"></span></div>
+          <div class="hint">Work running in the sandbox. Leave empty and the whole section is dropped from the email.</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div id="research-list"></div>
+        <div class="add-row">
+          <button class="btn-add" data-add="research">+ Add project</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num">5</div>
+        <div style="flex:1;">
+          <div class="ttl">Events and Workshops <span id="chip-events"></span></div>
+          <div class="hint">Workshops, demos, deadlines. Leave empty and the whole section is dropped.</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div id="events-list"></div>
+        <div class="add-row">
+          <button class="btn-add" data-add="events">+ Add event</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num">6</div>
+        <div>
+          <div class="ttl">Links and Footer</div>
+          <div class="hint">Defaults are pre-filled from the published sample. All links must be absolute.</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="grid two">
+          <div class="field">
+            <label for="f-lab">CUNY AI Lab URL</label>
+            <input type="text" id="f-lab" data-path="links.lab_url" placeholder="https://ailab.gc.cuny.edu">
+          </div>
+          <div class="field">
+            <label for="f-logo">Logo URL</label>
+            <input type="text" id="f-logo" data-path="links.logo_url" placeholder="https://ailab.gc.cuny.edu/images/logo-horizontal.png">
+          </div>
+          <div class="field">
+            <label for="f-address">Footer address</label>
+            <input type="text" id="f-address" data-path="footer.address" placeholder="The Graduate Center, 365 Fifth Avenue, New York, NY 10016">
+          </div>
+          <div class="field">
+            <label for="f-email">Contact email</label>
+            <input type="text" id="f-email" data-path="footer.contact_email" placeholder="ailab@gc.cuny.edu">
+          </div>
+          <div class="field">
+            <label for="f-archive">Past issues URL</label>
+            <input type="text" id="f-archive" data-path="footer.archive" placeholder="https://ailab.gc.cuny.edu/newsletter/">
+          </div>
+          <div class="field">
+            <label for="f-unsub">Unsubscribe URL</label>
+            <input type="text" id="f-unsub" data-path="footer.unsubscribe" placeholder="https://ailab.gc.cuny.edu/newsletter/unsubscribe">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num" style="background:#475467;">&#10003;</div>
+        <div>
+          <div class="ttl">Pre-send checks</div>
+          <div class="hint">Runs against the template rules in the README.</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="checks" id="checks"></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num" style="background:#475467;">&#8997;</div>
+        <div>
+          <div class="ttl">Draft</div>
+          <div class="hint">Your work is saved in this browser automatically. Export a file to hand off or back up.</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="add-row">
+          <button class="btn-add" id="btn-export">Export draft (.json)</button>
+          <button class="btn-add" id="btn-import">Import draft (.json)</button>
+          <button class="btn-add" id="btn-reset" style="color:#b42318; background:#fef3f2; border-color:#fecdca;">Clear saved draft</button>
+          <input type="file" id="file-import" accept="application/json,.json" hidden>
+        </div>
+      </div>
+    </div>
+
+    <details class="adv" style="margin:4px 2px 0;">
+      <summary>Formatting help and house style</summary>
+      <div class="help">
+        Body fields accept light inline formatting: <code class="k">**bold**</code>,
+        <code class="k">*italic*</code>, <code class="k">`code`</code>, and
+        <code class="k">[label](https://…)</code>. Everything else is escaped, so stray
+        <code class="k">&lt;</code> characters are safe.<br><br>
+        <b>Voice and style:</b> plain declarative sentences. No exclamation points, no emoji, no hype
+        adjectives. State what changed and why it matters to the reader's work. Prefer concrete numbers
+        and dates over "recently" and "soon".<br><br>
+        <b>Sending:</b> download both the HTML and the .txt, and send them as
+        <code class="k">multipart/alternative</code>. Test in Gmail, Apple Mail, and Outlook first.
+      </div>
+    </details>
+
+  </section>
+
+  <section class="previewpane">
+    <div class="preview-toolbar">
+      <span class="lbl">Preview</span>
+      <div class="seg" id="view-seg">
+        <button data-view="desktop" class="on">Desktop</button>
+        <button data-view="mobile">Mobile</button>
+      </div>
+      <div class="spacer"></div>
+      <span class="lbl" id="preview-meta" style="text-transform:none; letter-spacing:0; font-weight:600; color:#98a2b3;"></span>
+      <button class="btn-add" id="btn-open" style="border-style:solid; border-color:#b2c4e0; padding:6px 11px; font-size:12px;">Open in new tab</button>
+    </div>
+    <div class="preview-scroll">
+      <iframe id="preview" title="Newsletter preview"></iframe>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>CAIL Weekly Updates — sample issue</title>
+<!--
+  ============================================================================
+  SAMPLE ISSUE — CAIL Weekly Updates
+  ============================================================================
+  A filled copy of newsletter.html, kept as a reference for what a finished
+  issue looks like. This is not the template — edit newsletter.html.
+
+  What this sample demonstrates
+    - Five platform updates, one <tr> per item, badge colour by type
+    - "Why this matters" row closing out Platform Updates
+    - Tool Spotlight with no code snippet (that <tr> was deleted)
+    - Research and Projects omitted because no project was supplied
+    - Events and Workshops filled; header, button and code use bgcolor +
+      <font color> so colours survive a copy-paste into a mail client
+
+  Invented content — do not send as-is
+    issue number, both events, and every href="#".
+    Supplied by Zach: the five updates, the "why" line, and the tool
+    spotlight copy.
+  ============================================================================
+-->
+<style>
+  /* Progressive enhancement only — inline styles carry the design. */
+  body { margin:0 !important; padding:0 !important; width:100% !important; }
+  table { border-collapse:collapse !important; }
+  img { border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; }
+  a { text-decoration:none; }
+  @media only screen and (max-width:620px) {
+    .container { width:100% !important; }
+    .px { padding-left:22px !important; padding-right:22px !important; }
+    .h1 { font-size:24px !important; line-height:31px !important; }
+    .h2 { font-size:18px !important; }
+    .hide-sm { display:none !important; }
+    .code { font-size:13px !important; }
+  }
+  @media (prefers-color-scheme: dark) {
+    /* Keeps the card readable if a client force-inverts; safe to leave in. */
+    .dm-bg { background:#111827 !important; }
+    .dm-card { background:#1f2937 !important; }
+    .dm-text { color:#e5e7eb !important; }
+    .dm-muted { color:#9ca3af !important; }
+  }
+</style>
+</head>
+<body class="dm-bg" style="margin:0; padding:0; background-color:#eef1f7; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;">
+
+<!-- ============ PREHEADER (inbox preview text) ============ -->
+<div style="display:none; font-size:1px; color:#eef1f7; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;">
+  Systems Mapping: fuller maps from second memos, faster hand-mapping, Auto-fit steps.
+  &#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;&#8203;&#847;
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="dm-bg" style="background-color:#eef1f7;">
+  <tr>
+    <td align="center" style="padding:26px 12px;">
+
+      <!-- ==================== CARD ==================== -->
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="container dm-card" style="width:600px; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(16,24,40,0.08);">
+
+        <!-- ---------- LOGO ---------- -->
+        <tr>
+          <td class="px" align="left" bgcolor="#ffffff" style="background-color:#ffffff; padding:24px 34px 20px 34px;">
+            <a href="https://ailab.gc.cuny.edu" style="text-decoration:none; border:0;">
+              <img src="https://ailab.gc.cuny.edu/images/logo-horizontal.png" width="176" height="40" alt="CUNY AI Lab"
+                   style="display:block; width:176px; max-width:176px; height:auto; border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic;">
+            </a>
+          </td>
+        </tr>
+
+        <!-- ---------- HEADER ---------- -->
+        <tr>
+          <td bgcolor="#0b3d91" style="background-color:#0b3d91; background-image:linear-gradient(135deg,#0b3d91 0%,#124f9e 100%); padding:26px 34px 24px 34px;" class="px">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="left" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:12px; letter-spacing:1.2px; text-transform:uppercase; color:#bcd2ee; padding-bottom:8px;">
+                  <font color="#bcd2ee">CUNY AI Sandbox &nbsp;·&nbsp; Issue 001</font>
+                </td>
+              </tr>
+              <tr>
+                <td align="left" class="h1" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:28px; line-height:35px; font-weight:700; color:#ffffff; letter-spacing:-0.2px;">
+                  <font color="#ffffff">CAIL Weekly Updates</font>
+                </td>
+              </tr>
+              <tr>
+                <td align="left" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:14px; line-height:21px; color:#dbe6f5; padding-top:6px;">
+                  <font color="#dbe6f5">Sunday, November 22, 2026</font>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ---------- INTRO ---------- -->
+        <tr>
+          <td class="px" style="padding:28px 34px 4px 34px;">
+            <p class="dm-text" style="margin:0; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:27px; color:#344054;">
+              This release is concentrated in Systems Mapping: second memos now return fuller maps, policy language is read more precisely, and hand-mapping takes fewer clicks. Release evidence and the tool spotlight follow.
+            </p>
+          </td>
+        </tr>
+
+        <!-- ---------- IN THIS ISSUE ---------- -->
+        <tr>
+          <td class="px" style="padding:20px 34px 0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f9fc; border-left:3px solid #0b3d91; border-radius:4px;">
+              <tr>
+                <td style="padding:14px 18px; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:14px; line-height:24px; color:#475467;">
+                  <span style="font-weight:700; color:#0b3d91; letter-spacing:0.4px; text-transform:uppercase; font-size:11px;">In this issue</span><br>
+                  1. Platform updates &nbsp;·&nbsp; 2. Tool spotlight: Systems Mapping<br>
+                  3. Events and workshops
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ==================== SECTION 1: PLATFORM UPDATES ==================== -->
+        <tr>
+          <td class="px" style="padding:34px 34px 0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td class="h2" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:20px; line-height:28px; font-weight:700; color:#101828; padding-bottom:14px;">
+                  Platform Updates
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ---------- UPDATE ITEMS (one <tr> per item) ---------- -->
+        <tr>
+          <td class="px" style="padding:0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eaecf0;">
+              <tr>
+                <td style="padding:16px 0 16px 0;">
+                  <span style="display:inline-block; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#067647; background-color:#ecfdf3; border:1px solid #abefc6; border-radius:20px; padding:4px 10px;">New</span>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:24px; font-weight:700; color:#101828; padding:10px 0 4px 0;">
+                    Second memos now return at least one macro node
+                  </div>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    Maps generated from a second memo include at least one macro node beside their exo nodes, so students begin from a structure rather than a list of leaves.
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="px" style="padding:0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eaecf0;">
+              <tr>
+                <td style="padding:16px 0 16px 0;">
+                  <span style="display:inline-block; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#175cd3; background-color:#eff8ff; border:1px solid #b2ddff; border-radius:20px; padding:4px 10px;">Improved</span>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:24px; font-weight:700; color:#101828; padding:10px 0 4px 0;">
+                    Policy language is read more precisely
+                  </div>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    Systems Mapping counts a policy as operative only when it obliges or forbids. Acronyms are read as organizations, and anything that sits outside an office is placed at exo.
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="px" style="padding:0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eaecf0;">
+              <tr>
+                <td style="padding:16px 0 16px 0;">
+                  <span style="display:inline-block; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#175cd3; background-color:#eff8ff; border:1px solid #b2ddff; border-radius:20px; padding:4px 10px;">Improved</span>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:24px; font-weight:700; color:#101828; padding:10px 0 4px 0;">
+                    Hand-mapping takes one double-click at every level
+                  </div>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    On the canvas, a double-click adds a node; on a node, it connects one. Clicks keep reaching the map until the student presses Cancel, so a sequence of placements no longer needs a mode switch.
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="px" style="padding:0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eaecf0;">
+              <tr>
+                <td style="padding:16px 0 16px 0;">
+                  <span style="display:inline-block; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#067647; background-color:#ecfdf3; border:1px solid #abefc6; border-radius:20px; padding:4px 10px;">New</span>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:24px; font-weight:700; color:#101828; padding:10px 0 4px 0;">
+                    Immediate settings are drawn into the map
+                  </div>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    When a student chooses an immediate setting for a micro node in its panel, the map now draws a line to that setting instead of holding it as text only.
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="px" style="padding:0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eaecf0;">
+              <tr>
+                <td style="padding:16px 0 16px 0;">
+                  <span style="display:inline-block; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:#175cd3; background-color:#eff8ff; border:1px solid #b2ddff; border-radius:20px; padding:4px 10px;">Improved</span>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:16px; line-height:24px; font-weight:700; color:#101828; padding:10px 0 4px 0;">
+                    Steps open in order, with a corner guide and Auto-fit
+                  </div>
+                  <div class="dm-text" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    Steps now open in sequence beside a corner guide, and an Auto-fit switch returns the map to view without manual zooming.
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- ---------- /UPDATE ITEMS ---------- -->
+
+        <!-- ---------- WHY IT MATTERS (optional — delete if unused) ---------- -->
+        <tr>
+          <td class="px" style="padding:14px 34px 0 34px;">
+            <p class="dm-text" style="margin:0; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+              <strong style="color:#101828;">Why this matters:</strong> Systems Mapping now sits beside Stem Splitter on the Tools portal, sharing one CUNY Login, reporting, and class progress.
+            </p>
+          </td>
+        </tr>
+
+        <!-- ==================== SECTION 2: TOOL SPOTLIGHT ==================== -->
+        <tr>
+          <td class="px" style="padding:34px 34px 0 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f8fafc; border:1px solid #e2e8f0; border-radius:12px;">
+              <tr>
+                <td style="padding:24px 24px 8px 24px;">
+                  <div style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#0b3d91; padding-bottom:8px;">
+                    Tool Spotlight
+                  </div>
+                  <div class="dm-text" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:21px; line-height:28px; font-weight:700; color:#101828; letter-spacing:-0.1px;">
+                    Systems Mapping
+                  </div>
+                  <div style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:22px; color:#475467; font-style:italic; padding-top:5px;">
+                    Concept mapping for policy and systems coursework, now on the Tools portal.
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:8px 24px 0 24px;">
+                  <p class="dm-text" style="margin:0; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                    Systems Mapping is a concept-mapping workspace for policy and systems coursework. Students build maps by hand or generate them from second memos, and instructors see maps, reports, and class progress in the same place as their other tools. This release widens generated maps, tightens how policy language is read, and reduces hand-mapping to a double-click.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:18px 24px 24px 24px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td align="center" bgcolor="#0b3d91" style="background-color:#0b3d91; border-radius:8px;">
+                        <a href="https://ailab.gc.cuny.edu/tools/" style="display:inline-block; padding:11px 20px; font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:14px; font-weight:600; color:#ffffff; text-decoration:none;">
+                          <font color="#ffffff">Access the tool</font>
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:13px; line-height:19px; color:#556070; padding-top:10px;">
+                    Contributed by Zach, via Codex
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ==================== SECTION 4: EVENTS ==================== -->
+        <tr>
+          <td class="px" style="padding:32px 34px 0 34px;">
+            <div class="h2" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:20px; line-height:28px; font-weight:700; color:#101828; padding-bottom:14px;">
+              Events and Workshops
+            </div>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <!-- REPEATABLE EVENT ROW -->
+              <tr>
+                <td valign="top" width="86" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:13px; font-weight:700; color:#0b3d91; line-height:22px; padding:10px 0; border-top:1px solid #eaecf0;">
+                  Thu, Dec 3
+                </td>
+                <td valign="top" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:24px; color:#475467; padding:10px 0; border-top:1px solid #eaecf0;">
+                  <strong style="color:#101828;">Systems Mapping workshop for instructors</strong><br>
+                  A 45-minute walkthrough of second-memo maps, hand-mapping, and class progress reporting. 
+                  <a href="#" style="color:#0b3d91; font-weight:600; text-decoration:underline;">Add to calendar →</a>
+                </td>
+              </tr>
+              <!-- /REPEATABLE EVENT ROW -->
+              <tr>
+                <td valign="top" width="86" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:13px; font-weight:700; color:#0b3d91; line-height:22px; padding:10px 0; border-top:1px solid #eaecf0;">
+                  Wed, Dec 9
+                </td>
+                <td valign="top" style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:24px; color:#475467; padding:10px 0; border-top:1px solid #eaecf0;">
+                  <strong style="color:#101828;">Open session: mapping a memo start to finish</strong><br>
+                  Drop-in working session for students and teaching staff. Bring a memo or a map in progress. 
+                  <a href="#" style="color:#0b3d91; font-weight:600; text-decoration:underline;">Add to calendar →</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ==================== CUNY AI LAB LINK ==================== -->
+        <tr>
+          <td class="px" style="padding:32px 34px 30px 34px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f9fc; border-radius:10px;">
+              <tr>
+                <td align="center" style="padding:20px; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
+                  <a href="https://ailab.gc.cuny.edu" style="color:#0b3d91; font-weight:600; text-decoration:underline;">CUNY AI Lab</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ---------- FOOTER ---------- -->
+        <tr>
+          <td class="px" style="background-color:#f7f9fc; border-top:1px solid #eaecf0; padding:24px 34px 26px 34px;">
+            <div style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:13px; line-height:21px; color:#475467;">
+              <strong style="color:#344054;">CUNY AI Sandbox</strong> · The Graduate Center, 365 Fifth Avenue, New York, NY 10016<br>
+              Questions? Reply to this email or write to
+              <a href="mailto:ailab@gc.cuny.edu" style="color:#0b3d91; font-weight:600;">ailab@gc.cuny.edu</a>.<br><br>
+              You're receiving this because you have access to the sandbox.
+              <a href="#" style="color:#667085; text-decoration:underline;">Past issues</a> &nbsp;·&nbsp;
+              <a href="#" style="color:#667085; text-decoration:underline;">Unsubscribe</a>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+      <!-- ==================== /CARD ==================== -->
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

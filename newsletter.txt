@@ -1,0 +1,66 @@
+CAIL WEEKLY UPDATES
+Issue {{issue_number}} · {{date}}
+
+{{intro}}
+
+---
+IN THIS ISSUE
+1. Platform updates
+2. Tool spotlight: {{tool_name}}
+3. Research and projects
+4. Events and workshops
+---
+
+PLATFORM UPDATES
+
+[{{update_tag}}] {{update_title}}
+{{update_body}}
+{{update_link}}
+
+[{{update_tag}}] {{update_title}}
+{{update_body}}
+{{update_link}}
+
+[{{update_tag}}] {{update_title}}
+{{update_body}}
+{{update_link}}
+
+Why this matters: {{why}}
+
+Release verification: {{verification}}
+
+---
+TOOL SPOTLIGHT: {{tool_name}}
+{{tool_tagline}}
+
+{{tool_body}}
+
+{{tool_code}}
+
+Access the tool: {{tool_link}}
+Contributed by {{tool_author}}
+---
+
+RESEARCH AND PROJECTS IN THE SANDBOX
+{{shoutout_name}} — {{shoutout_body}}
+{{shoutout_link}}
+To nominate a project for a future issue, reply to this email.
+
+EVENTS AND WORKSHOPS
+{{event_1_date}} — {{event_1_title}}
+{{event_1_body}}
+{{event_1_link}}
+
+{{event_2_date}} — {{event_2_title}}
+{{event_2_body}}
+{{event_2_link}}
+
+CUNY AI Lab: {{lab_url}}
+
+---
+CUNY AI Sandbox · {{footer_address}}
+Questions? Reply to this email or write to {{contact_email}}.
+
+You're receiving this because you have access to the sandbox.
+Past issues: {{archive_url}}
+Unsubscribe: {{unsubscribe_url}}
