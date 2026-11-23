@@ -18,7 +18,7 @@ f.addEventListener('load',async ()=>{
   const sleep=ms=>new Promise(r=>setTimeout(r,ms));
   try{
     // 1 initial render
-    ok('form fields rendered', $$('[data-path]').length>=20, $$('[data-path]').length+' path inputs');
+    ok('form fields rendered', $$('[data-path]').length>=15, $$('[data-path]').length+' path inputs');
     ok('updates list has 1 item', $$('#updates-list .item').length===1);
     ok('events list has 1 item', $$('#events-list .item').length===1);
     ok('research list empty help', /No project entries/.test($('#research-list').textContent));
@@ -114,7 +114,7 @@ f.addEventListener('load',async ()=>{
     $('#btn-new').click(); await sleep(300);
     ok('new issue increments', $('#f-issue').value==='002', $('#f-issue').value);
     ok('new issue clears updates', $$('#updates-list .item').length===1);
-    ok('new issue keeps footer defaults', $('#f-address').value.includes('365 Fifth Avenue'));
+    ok('new issue keeps link defaults', $('#f-logo').value.includes('logo-horizontal.png'));
 
     // 16 no console errors
     ok('no page errors', !w.__errs || w.__errs.length===0, w.__errs?w.__errs.join('|'):'');

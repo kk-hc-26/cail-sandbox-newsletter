@@ -20,12 +20,6 @@ const DEFAULTS = {
   links: {
     lab_url: 'https://ailab.gc.cuny.edu',
     logo_url: 'https://ailab.gc.cuny.edu/images/logo-horizontal.png'
-  },
-  footer: {
-    address: 'The Graduate Center, 365 Fifth Avenue, New York, NY 10016',
-    contact_email: 'ailab@gc.cuny.edu',
-    archive: '',
-    unsubscribe: ''
   }
 };
 
@@ -69,12 +63,6 @@ const SAMPLE = {
   links: {
     lab_url: 'https://ailab.gc.cuny.edu',
     logo_url: 'https://ailab.gc.cuny.edu/images/logo-horizontal.png'
-  },
-  footer: {
-    address: 'The Graduate Center, 365 Fifth Avenue, New York, NY 10016',
-    contact_email: 'ailab@gc.cuny.edu',
-    archive: '',
-    unsubscribe: ''
   }
 };
 
@@ -224,7 +212,7 @@ function generate(d) {
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td align="left" style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:12px; letter-spacing:1.2px; text-transform:uppercase; color:#bcd2ee; padding-bottom:8px;">
-                  <font color="#bcd2ee">CUNY AI Sandbox &nbsp;\u00b7&nbsp; Issue ${issue}</font>
+                  <font color="#bcd2ee">CUNY AI Sandbox</font>
                 </td>
               </tr>
               <tr>
@@ -464,46 +452,21 @@ function generate(d) {
         </tr>`);
   }
 
-  /* ---- lab link + footer ---- */
+  /* ---- footer ---- */
   const labHref = href(d.links.lab_url);
-  const mail = has(d.footer.contact_email) ? esc(d.footer.contact_email.trim()) : 'ailab@gc.cuny.edu';
-  const archive = href(d.footer.archive);
-  const unsub = href(d.footer.unsubscribe);
-
   P(`
-        <!-- ==================== CUNY AI LAB LINK ==================== -->
-        <tr>
-          <td class="px" style="padding:32px 34px 30px 34px;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f9fc; border-radius:10px;">
-              <tr>
-                <td align="center" style="padding:20px; font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:15px; line-height:25px; color:#475467;">
-                  <a href="${esc(labHref)}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">CUNY AI Lab</a>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
         <!-- ---------- FOOTER ---------- -->
         <tr>
           <td class="px" style="background-color:#f7f9fc; border-top:1px solid #eaecf0; padding:24px 34px 26px 34px;">
             <div style="font-family:Georgia,'Iowan Old Style','Times New Roman',Times,serif; font-size:13px; line-height:21px; color:#475467;">
-              <strong style="color:#344054;">CUNY AI Sandbox</strong>${has(d.footer.address) ? ' \u00b7 ' + esc(d.footer.address.trim()) : ''}<br>
-              Questions? Reply to this email or write to
-              <a href="mailto:${mail}" style="color:#0b3d91; font-weight:600;">${mail}</a>.<br><br>
-              You're receiving this because you have access to the sandbox.${archive ? `
-              <a href="${esc(archive)}" style="color:#667085; text-decoration:underline;">Past issues</a> &nbsp;\u00b7&nbsp;` : ''}${unsub ? `
-              <a href="${esc(unsub)}" style="color:#667085; text-decoration:underline;">Unsubscribe</a>` : ''}
+              ${labHref ? `<a href="${esc(labHref)}" style="color:#0b3d91; font-weight:600; text-decoration:underline;">CUNY AI LAB</a>` : '<strong style="color:#344054;">CUNY AI LAB</strong>'}<br>
+              You're receiving this because you have access to the sandbox.
             </div>
           </td>
         </tr>
 
       </table>
       <!-- ==================== /CARD ==================== -->
-
-      <div style="font-family:'Trebuchet MS','Segoe UI',Tahoma,Verdana,sans-serif; font-size:11px; line-height:16px; color:#98a2b3; padding:16px 20px 4px 20px;">
-        CUNY AI Sandbox &nbsp;\u00b7&nbsp; A service of the CUNY Office of Research
-      </div>
 
     </td>
   </tr>
@@ -585,16 +548,9 @@ function generateText(d) {
   }
 
   const lab = href(d.links.lab_url);
-  if (lab && lab !== '#') L.push(`CUNY AI Lab: ${lab}`, '');
-
   L.push('---');
-  L.push(`CUNY AI Sandbox${has(d.footer.address) ? ' \u00b7 ' + d.footer.address.trim() : ''}`);
-  const mail = has(d.footer.contact_email) ? d.footer.contact_email.trim() : 'ailab@gc.cuny.edu';
-  L.push(`Questions? Reply to this email or write to ${mail}.`, '');
+  L.push(lab && lab !== '#' ? `CUNY AI LAB: ${lab}` : 'CUNY AI LAB');
   L.push("You're receiving this because you have access to the sandbox.");
-  const ar = href(d.footer.archive), un = href(d.footer.unsubscribe);
-  if (ar && ar !== '#') L.push(`Past issues: ${ar}`);
-  if (un && un !== '#') L.push(`Unsubscribe: ${un}`);
 
   return L.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
 }
@@ -807,8 +763,6 @@ function renderChecks() {
   (state.events || []).forEach((e, i) => { if (has(e.link)) links.push([`Event ${i + 1}`, e.link]); });
   if (has(state.tool.link)) links.push(['Tool CTA', state.tool.link]);
   if (has(state.links.lab_url)) links.push(['Lab URL', state.links.lab_url]);
-  if (has(state.footer.archive)) links.push(['Past issues', state.footer.archive]);
-  if (has(state.footer.unsubscribe)) links.push(['Unsubscribe', state.footer.unsubscribe]);
 
   const broken = links.filter(([, v]) => !href(v));
   if (broken.length) {
@@ -833,10 +787,6 @@ function renderChecks() {
   if (/!/.test(allText)) warn('An exclamation point appears in the copy.', 'House style is plain declarative sentences.');
   if (/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(allText)) warn('Emoji appear in the copy.', 'House style is no emoji.');
   if (/\b(recently|soon|shortly)\b/i.test(allText)) warn('Vague time words ("recently", "soon").', 'Prefer concrete numbers and dates.');
-
-  if (has(state.footer.contact_email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.footer.contact_email.trim())) {
-    warn('Contact email does not look like an address.');
-  }
 
   if (!rows.some(r => r.includes('warn'))) {
     ok('Nothing blocking. Test in Gmail, Apple Mail, and Outlook before sending.');
@@ -988,7 +938,6 @@ function bind() {
     const nextIssue = String((parseInt(state.meta.issue, 10) || 0) + 1).padStart(3, '0');
     state = initial();
     state.meta.issue = nextIssue;
-    state.footer = clone(DEFAULTS.footer);
     syncFormFromState();
     scheduleSave();
     refresh();
